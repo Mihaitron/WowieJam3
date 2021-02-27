@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d5d7886d3510e4f4d9610c5616e63068
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 8404be70184654265930450def6a9037, type: 3}
+  generateWrapperCode: 0
+  wrapperCodePath: PlayerMove
+  wrapperClassName: PlayerMove
+  wrapperCodeNamespace: 
