@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,7 @@ public class PlayerHealth : MonoBehaviour
     public Transform healthBar;
 
     private Health health;
+    private float dmgTime = 5f;
 
     private void Start()
     {
@@ -18,7 +20,53 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
+        this.ModifyHearts();
         this.ModifyHealthUI();
+        if (!(dmgTime > 0))
+        {
+            Debug.Log("In if!");
+            health.TakeDamage(DamageState.HALF);
+            dmgTime = 5f;
+        }
+        dmgTime -= Time.deltaTime;
+        //Debug.Log(dmgTime);
+    }
+
+    private void ModifyHearts()
+    {
+        float dmg = health.damageTaken();
+        int current_index = this.healthBar.childCount - 1;
+        Debug.Log(dmg);
+
+        while (current_index > 0)
+        {
+            Transform current = this.healthBar.GetChild(current_index);
+            Heart current_heart = current.GetComponent<Heart>();
+
+            while (dmg > 0.5f)
+            {
+                current_heart.state = DamageState.NONE;
+                dmg -= 1f;
+                current_index--;
+
+                current = this.healthBar.GetChild(current_index);
+                current_heart = current.GetComponent<Heart>();
+            }
+
+
+            if (dmg == 0.5f)
+            {
+                current_heart.state = DamageState.HALF;
+                current_index--;
+
+            }
+            else
+            {
+                current_heart.state = DamageState.FULL;
+                current_index--;
+            }
+        }
+
     }
 
     private void ModifyHealthUI()
