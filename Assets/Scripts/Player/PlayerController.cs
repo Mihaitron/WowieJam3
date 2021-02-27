@@ -6,8 +6,6 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerMove))]
 public class PlayerController : MonoBehaviour
 {
-    public Camera camera;
-
     private bool isMoving = false;
     private bool isLooking = false;
     private Vector2 movingDirection = Vector2.zero;
