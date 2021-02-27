@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.01910732, g: 0.00849224, b: 0.0012161832, a: 1}
+  m_IndirectSpecularColor: {r: 0.019107196, g: 0.008492221, b: 0.0012161809, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5538,7 +5538,7 @@ PrefabInstance:
     - target: {fileID: 8313932511565138129, guid: 69588fdf551390b49aed115cf69a80e7,
         type: 3}
       propertyPath: m_Name
-      value: man-knight-soldier
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8316647124518841813, guid: 69588fdf551390b49aed115cf69a80e7,
         type: 3}
@@ -5615,7 +5615,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2c0f262b3b322343b87761c4a7e86d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1078956098}
 --- !u!114 &836464637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5628,7 +5627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3bbf27a026748148909d2f1a3984501, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10000
+  speed: 500
 --- !u!54 &836464638
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5643,8 +5642,45 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!4 &836464642 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8316647124518841813, guid: 69588fdf551390b49aed115cf69a80e7,
+    type: 3}
+  m_PrefabInstance: {fileID: 836464634}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &836464643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836464635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: d5d7886d3510e4f4d9610c5616e63068,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: Keyboard & Mouse
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &858428858
 GameObject:
   m_ObjectHideFlags: 0
@@ -7930,6 +7966,7 @@ GameObject:
   - component: {fileID: 1078956098}
   - component: {fileID: 1078956097}
   - component: {fileID: 1078956100}
+  - component: {fileID: 1078956101}
   m_Layer: 0
   m_Name: Render Texture Camera
   m_TagString: MainCamera
@@ -7978,7 +8015,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 23
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 1179860893}
+  m_TargetTexture: {fileID: 1406720217}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -8018,8 +8055,21 @@ MonoBehaviour:
   targetScreenSize:
     width: 240
     height: 135
-  screenScaleFactor: 5
+  screenScaleFactor: 1
   display: {fileID: 1969459584}
+--- !u!114 &1078956101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078956096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f150b9e0abc368f4b8b5b16c5bfd3e4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 836464642}
 --- !u!1001 &1081521953
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8560,41 +8610,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1175212064}
   m_PrefabAsset: {fileID: 0}
---- !u!84 &1179860893
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  serializedVersion: 3
-  m_Width: 77
-  m_Height: 189
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthFormat: 2
-  m_ColorFormat: 8
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 0
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
 --- !u!1 &1186064410
 GameObject:
   m_ObjectHideFlags: 0
@@ -9984,6 +9999,41 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1386513959}
   m_PrefabAsset: {fileID: 0}
+--- !u!84 &1406720217
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  serializedVersion: 3
+  m_Width: 407
+  m_Height: 947
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthFormat: 2
+  m_ColorFormat: 8
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 0
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
 --- !u!1001 &1407384860
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14158,7 +14208,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 1179860893}
+  m_Texture: {fileID: 1406720217}
   m_UVRect:
     serializedVersion: 2
     x: 0
