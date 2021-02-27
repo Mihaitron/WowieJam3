@@ -53,7 +53,6 @@ public class PlayerController : MonoBehaviour
         {
             this.isLooking = false;
         }
-
         this.lookingDirection = input_vector.normalized;
     }
 
