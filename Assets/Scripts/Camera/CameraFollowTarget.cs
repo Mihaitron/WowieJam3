@@ -13,6 +13,11 @@ public class CameraFollowTarget : MonoBehaviour
 
     private void FollowTarget()
     {
+        if (!target)
+        {
+            return;
+        }
+
         Vector3 new_position = new Vector3(this.target.position.x, this.transform.position.y, this.target.position.z);
         
         this.transform.position = new_position;
