@@ -4,27 +4,40 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public float maxHealth = 100f;
+    public int maxHealth = 3;
 
-    private float currentHealth;
-
-    private void Start()
+    public void TakeDamage(DamageState damage)
     {
-        this.currentHealth = this.maxHealth;
-    }
-
-    public void TakeDamage(float damage)
-    {
-        this.currentHealth -= damage;
-
-        if (this.currentHealth <= 0)
-        {
-            this.Die();
-        }
     }
 
     public void Die()
     {
         Destroy(this.gameObject);
+    }
+
+    public float TranslateDamageToValue(DamageState damage)
+    {
+        switch (damage)
+        {
+            case DamageState.HALF:
+                return 0.5f;
+            case DamageState.FULL:
+                return 1f;
+            default:
+                return 0;
+        }
+    }
+
+    public DamageState TranslateValueToDamage(float damage)
+    {
+        switch (damage)
+        {
+            case 0.5f:
+                return DamageState.HALF;
+            case 1f:
+                return DamageState.FULL;
+            default:
+                return DamageState.NONE;
+        }
     }
 }
