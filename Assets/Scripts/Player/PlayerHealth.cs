@@ -58,6 +58,7 @@ public class PlayerHealth : MonoBehaviour
             {
                 current_heart.state = DamageState.HALF;
                 current_index--;
+                dmg -= 0.5f;
 
             }
             else
