@@ -21,10 +21,17 @@ public class PlayerMove : MonoBehaviour
         this.rigidbody.AddForce(new_direction * this.speed * Time.deltaTime);
     }
 
-    public void HandleLooking(Vector2 direction)
+    public void HandleLooking(Vector2 mouse_position)
     {
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Vector2 positionOnScreen = Camera.main.WorldToViewportPoint(this.transform.position);
+        Vector2 mouseOnScreen = (Vector2)Camera.main.ScreenToViewportPoint(mouse_position);
+        float angle = this.AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
 
-        this.transform.rotation = Quaternion.Euler(0, -angle - 90, 0);
+        transform.rotation = Quaternion.Euler(new Vector3(0f, -angle + 90, 0f));
+    }
+
+    private float AngleBetweenTwoPoints(Vector3 a, Vector3 b)
+    {
+        return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
     }
 }

@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private bool isMoving = false;
     private bool isLooking = false;
     private Vector2 movingDirection = Vector2.zero;
-    private Vector2 lookingDirection = Vector2.zero;
+    private Vector2 mousePosition = Vector2.zero;
     private PlayerMove playerMovement;
 
 
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
         {
             this.isLooking = false;
         }
-        this.lookingDirection = input_vector.normalized;
+        this.mousePosition = input_vector;
     }
 
     public void ApplyMovement()
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
         }
         if (this.isLooking)
         {
-            this.playerMovement.HandleLooking(this.lookingDirection);
+            this.playerMovement.HandleLooking(this.mousePosition);
         }
     }
 }
