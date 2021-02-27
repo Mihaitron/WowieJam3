@@ -135,8 +135,8 @@
                 },
                 {
                     "name": "",
-                    "id": "4bd1896f-f5c9-45a7-9f27-be6d9cab531a",
-                    "path": "<Mouse>/position",
+                    "id": "d319255c-2130-46ca-812b-fd3906837d0a",
+                    "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -146,8 +146,8 @@
                 },
                 {
                     "name": "",
-                    "id": "d319255c-2130-46ca-812b-fd3906837d0a",
-                    "path": "<Gamepad>/rightStick",
+                    "id": "9f9292cc-1b8f-40ad-be81-6890527d84bd",
+                    "path": "<Mouse>/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
