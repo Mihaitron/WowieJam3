@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c530016a6e420d4997fb1e99cbeb2d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 1
+  state: 2
 --- !u!1001 &41511688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1797,7 +1797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c530016a6e420d4997fb1e99cbeb2d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 0
+  state: 2
 --- !u!1001 &548122106
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3828,7 +3828,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2c0f262b3b322343b87761c4a7e86d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 1078956098}
 --- !u!114 &1184568971
 MonoBehaviour:
   m_ObjectHideFlags: 0
