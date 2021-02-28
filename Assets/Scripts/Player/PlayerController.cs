@@ -6,6 +6,10 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerMove))]
 public class PlayerController : MonoBehaviour
 {
+    public GameObject weapon;
+    public GameObject shield;
+    public float attackTime = 1f;
+
     private bool isMoving = false;
     private bool isLooking = false;
     private Vector2 movingDirection = Vector2.zero;
@@ -15,6 +19,8 @@ public class PlayerController : MonoBehaviour
     private List<GameObject> enemies;
     private bool nearChest;
     private Transform chest;
+    private GameObject spawnedShield = null;
+    private float currentAttackTime;
 
     private void Start()
     {
@@ -22,11 +28,13 @@ public class PlayerController : MonoBehaviour
         enemies = new List<GameObject>();
         isBlocking = false;
         this.playerMovement = this.GetComponent<PlayerMove>();
+        this.currentAttackTime = this.attackTime;
     }
 
     private void FixedUpdate()
     {
         this.ApplyMovement();
+        this.currentAttackTime -= Time.deltaTime;
     }
 
     public bool IsBlocking()
@@ -37,37 +45,55 @@ public class PlayerController : MonoBehaviour
     public void OnBlock()
     {
         isBlocking = !isBlocking;
+
+        if (this.isBlocking)
+        {
+            this.spawnedShield = Instantiate(this.shield, this.transform.GetChild(0), false);
+        }
+        else
+        {
+            Destroy(this.spawnedShield);
+            this.spawnedShield = null;
+        }
     }
 
     public void OnAttack()
     {
-        List<GameObject> enemiesToRemove = new List<GameObject>();
-        //Debug.Log(enemies.Count);
-
-        foreach (GameObject enemy in enemies)
+        if (!this.isBlocking && this.currentAttackTime <= 0)
         {
-            
-          
-            Health enemyHealth = enemy.GetComponent<Health>();
-            float enemyHealthCurrent = enemyHealth.maxHealth;
-            enemyHealth.TakeDamage(DamageState.FULL);
+            this.currentAttackTime = this.attackTime;
+            GameObject spawned_sword = Instantiate(this.weapon, this.transform.GetChild(0), false);
+            List<GameObject> enemiesToRemove = new List<GameObject>();
 
-            if (enemyHealthCurrent == 1)
+            spawned_sword.GetComponent<Animator>().speed = 5;
+
+            foreach (GameObject enemy in enemies)
             {
-                enemiesToRemove.Add(enemy);
-            }
-        }
 
-        foreach (GameObject enemy in enemiesToRemove)
-        {
-            //Debug.Log(enemy.name);
-            enemies.Remove(enemy);
+
+                Health enemyHealth = enemy.GetComponent<Health>();
+                float enemyHealthCurrent = enemyHealth.maxHealth;
+                enemyHealth.TakeDamage(DamageState.FULL);
+
+                if (enemyHealthCurrent == 1)
+                {
+                    enemiesToRemove.Add(enemy);
+                }
+            }
+
+            foreach (GameObject enemy in enemiesToRemove)
+            {
+                enemies.Remove(enemy);
+            }
         }
     }
 
     public void OnInteract()
     {
-        chest.GetComponent<Chest>().Interact();
+        if (this.nearChest)
+        {
+            chest.GetComponent<Chest>().Interact();
+        }
     }
 
     public void OnPause()
@@ -127,7 +153,6 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            //Debug.Log(other.gameObject.name);
             enemies.Add(other.gameObject);
         }
         else if (other.CompareTag("Chest"))
