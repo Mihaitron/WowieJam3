@@ -13,9 +13,12 @@ public class PlayerController : MonoBehaviour
     private PlayerMove playerMovement;
     private bool isBlocking;
     private List<GameObject> enemies;
+    private bool nearChest;
+    private Transform chest;
 
     private void Start()
     {
+        nearChest = false;
         enemies = new List<GameObject>();
         isBlocking = false;
         this.playerMovement = this.GetComponent<PlayerMove>();
@@ -60,6 +63,11 @@ public class PlayerController : MonoBehaviour
             //Debug.Log(enemy.name);
             enemies.Remove(enemy);
         }
+    }
+
+    public void OnInteract()
+    {
+        chest.GetComponent<Chest>().Interact();
     }
 
     public void OnMove(InputValue input)
@@ -116,6 +124,11 @@ public class PlayerController : MonoBehaviour
             //Debug.Log(other.gameObject.name);
             enemies.Add(other.gameObject);
         }
+        else if (other.CompareTag("Chest"))
+        {
+            nearChest = true;
+            chest = other.transform;
+        }
     }
 
     public void OnTriggerExit(Collider other)
@@ -123,6 +136,17 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             enemies.Remove(other.gameObject);
+            nearChest = false;
+            chest = null;
+        }
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.CompareTag("Heart"))
+        { 
+            this.GetComponent<PlayerHealth>().Heal();
+            Destroy(collision.gameObject);
         }
     }
 }

@@ -25,6 +25,13 @@ public class Health : MonoBehaviour
         return maxHealth - currentHealth;
     }
 
+    public void AddHealth()
+    {
+        currentHealth += 1;
+        if (currentHealth > maxHealth)
+            currentHealth = maxHealth;
+    }
+
     public void TakeDamage(DamageState damage)
     {
         currentHealth -= TranslateDamageToValue(damage);

@@ -32,6 +32,11 @@ public class PlayerHealth : MonoBehaviour
         //Debug.Log(dmgTime);
     }
 
+    public void Heal()
+    {
+        health.AddHealth();
+    }
+
     private void ModifyHearts()
     {
         float dmg = health.damageTaken();
