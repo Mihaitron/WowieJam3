@@ -96,6 +96,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnPause()
+    {
+        GameObject.Find("Canvas").GetComponent<PauseMenu>().Action();
+    }
+
     public void OnMove(InputValue input)
     {
         Vector2 input_vector = input.Get<Vector2>();
