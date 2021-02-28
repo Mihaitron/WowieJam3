@@ -1359,6 +1359,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 5144563884151997212, guid: fc3afe3dd7f84f944a9a11b608f4ead6, type: 3}
   spawnPosition: {fileID: 215292025}
+  closedChest: {fileID: 3007426249115766205, guid: e7244308fee5acc409182b4bd1781ac0,
+    type: 3}
 --- !u!1001 &136661046
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16793,6 +16795,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 1424537711308731828, guid: 4f67fc50bd93d6d4fa6b8483df00029a, type: 3}
   shield: {fileID: 7528496283115803714, guid: 21433792f3e4a1240a72dedd69e0ed39, type: 3}
+  attackTime: 1
 --- !u!54 &1576962602
 Rigidbody:
   m_ObjectHideFlags: 0
