@@ -1357,7 +1357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16a68f750c778cd43ba205e9d231e1bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 0}
+  item: {fileID: 5144563884151997212, guid: fc3afe3dd7f84f944a9a11b608f4ead6, type: 3}
   spawnPosition: {fileID: 215292025}
 --- !u!1001 &136661046
 PrefabInstance:
