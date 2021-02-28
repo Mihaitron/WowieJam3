@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
 
         foreach (GameObject enemy in enemiesToRemove)
         {
-            Debug.Log(enemy.name);
+            //Debug.Log(enemy.name);
             enemies.Remove(enemy);
         }
     }
@@ -113,7 +113,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            Debug.Log(other.gameObject.name);
+            //Debug.Log(other.gameObject.name);
             enemies.Add(other.gameObject);
         }
     }
