@@ -60,6 +60,10 @@ public class PlayerController : MonoBehaviour
         {
             this.playerMovement.HandleMovement(this.movingDirection);
         }
+        else
+        {
+            this.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
         if (this.isLooking)
         {
             this.playerMovement.HandleLooking(this.mousePosition);

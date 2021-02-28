@@ -34,12 +34,13 @@ public class PixelatedCamera : MonoBehaviour
     {
         // Try to set as main pixel camera
         if (main == null) main = this;
+        Init();
     }
 
     private void Start()
     {
         // Initialize the system
-        Init();
+        
     }
 
     private void Update()
