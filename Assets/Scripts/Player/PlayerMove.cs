@@ -18,7 +18,7 @@ public class PlayerMove : MonoBehaviour
     {
         Vector3 new_direction = new Vector3(-direction.x, 0f, -direction.y);
 
-        this.rigidbody.AddForce(new_direction * this.speed * Time.deltaTime);
+        this.rigidbody.velocity = new_direction * this.speed * Time.deltaTime;
     }
 
     public void HandleLooking(Vector2 mouse_position)
