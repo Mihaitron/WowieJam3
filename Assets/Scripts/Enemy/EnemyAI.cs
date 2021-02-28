@@ -20,6 +20,7 @@ public class EnemyAI : MonoBehaviour
     //public float speed = 1;
     public DamageState dmg;
     public float distance;
+    public float waitDamageTime;
 
     private bool canSeePlayer;
     private float damageTime;
@@ -54,7 +55,7 @@ public class EnemyAI : MonoBehaviour
                 if (!player.GetComponent<PlayerController>().IsBlocking())
                     player.gameObject.GetComponent<Health>().TakeDamage(dmg);
                 
-                damageTime = 2f;
+                damageTime = waitDamageTime;
 
             }
 
