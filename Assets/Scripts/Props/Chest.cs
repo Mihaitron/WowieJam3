@@ -6,21 +6,17 @@ public class Chest : MonoBehaviour
 {
     public Transform item;
     public Transform spawnPosition;
-
-    private bool interacted;
+    public GameObject closedChest;
 
     private void Start()
     {
-        interacted = false;
     }
-
 
     public void Interact()
     {
-        if (!interacted)
-        { 
-            Instantiate(item, spawnPosition.position, Quaternion.identity);
-            interacted = true;
-        }
+        Instantiate(item, spawnPosition.position, Quaternion.identity);
+        Instantiate(this.closedChest, this.transform.position, this.transform.rotation);
+
+        Destroy(this.gameObject);
     }
 }
