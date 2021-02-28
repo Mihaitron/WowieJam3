@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public int maxHealth = 3;
+    public int maxHealth;
 
     private float currentHealth;
-    //private bool dead = false;
+    private bool canGetDamage;
 
     public void Start()
     {
+        canGetDamage = true;
         currentHealth = maxHealth;
+    }
+
+    public float GetCurrentHealth()
+    {
+        return currentHealth;
     }
 
     public float damageTaken()
@@ -34,7 +40,7 @@ public class Health : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public float TranslateDamageToValue(DamageState damage)
+    public static float TranslateDamageToValue(DamageState damage)
     {
         switch (damage)
         {
@@ -47,7 +53,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    public DamageState TranslateValueToDamage(float damage)
+    public static DamageState TranslateValueToDamage(float damage)
     {
         switch (damage)
         {

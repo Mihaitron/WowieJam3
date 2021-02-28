@@ -11,16 +11,55 @@ public class PlayerController : MonoBehaviour
     private Vector2 movingDirection = Vector2.zero;
     private Vector2 mousePosition = Vector2.zero;
     private PlayerMove playerMovement;
-
+    private bool isBlocking;
+    private List<GameObject> enemies;
 
     private void Start()
     {
+        enemies = new List<GameObject>();
+        isBlocking = false;
         this.playerMovement = this.GetComponent<PlayerMove>();
     }
 
     private void FixedUpdate()
     {
         this.ApplyMovement();
+    }
+
+    public bool IsBlocking()
+    {
+        return isBlocking;
+    }
+
+    public void OnBlock()
+    {
+        isBlocking = !isBlocking;
+    }
+
+    public void OnAttack()
+    {
+        List<GameObject> enemiesToRemove = new List<GameObject>();
+        //Debug.Log(enemies.Count);
+
+        foreach (GameObject enemy in enemies)
+        {
+            
+          
+            Health enemyHealth = enemy.GetComponent<Health>();
+            float enemyHealthCurrent = enemyHealth.maxHealth;
+            enemyHealth.TakeDamage(DamageState.FULL);
+
+            if (enemyHealthCurrent == 1)
+            {
+                enemiesToRemove.Add(enemy);
+            }
+        }
+
+        foreach (GameObject enemy in enemiesToRemove)
+        {
+            Debug.Log(enemy.name);
+            enemies.Remove(enemy);
+        }
     }
 
     public void OnMove(InputValue input)
@@ -67,6 +106,23 @@ public class PlayerController : MonoBehaviour
         if (this.isLooking)
         {
             this.playerMovement.HandleLooking(this.mousePosition);
+        }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            Debug.Log(other.gameObject.name);
+            enemies.Add(other.gameObject);
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            enemies.Remove(other.gameObject);
         }
     }
 }

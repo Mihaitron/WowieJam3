@@ -19,6 +19,7 @@ public class EnemyAI : MonoBehaviour
     //public float delta = 0.1f;
     //public float speed = 1;
     public DamageState dmg;
+    public float distance;
 
     private bool canSeePlayer;
     private float damageTime;
@@ -34,6 +35,15 @@ public class EnemyAI : MonoBehaviour
     {
         if (type == AIType.NORMAL)
         {
+            if (Vector3.Distance(player.position, this.transform.position) <= distance)
+            {
+                canSeePlayer = true;
+            }
+            else
+            {
+                canSeePlayer = false;
+            }
+
             if (canSeePlayer)
             {
                 agent.SetDestination(player.position);
@@ -41,7 +51,9 @@ public class EnemyAI : MonoBehaviour
 
             if (damageTime <= 0 && damageble)
             {
-                player.gameObject.GetComponent<Health>().TakeDamage(dmg);
+                if (!player.GetComponent<PlayerController>().IsBlocking())
+                    player.gameObject.GetComponent<Health>().TakeDamage(dmg);
+                
                 damageTime = 2f;
 
             }
@@ -49,24 +61,6 @@ public class EnemyAI : MonoBehaviour
             if (damageTime > 0)
                 damageTime -= Time.deltaTime;
 
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            player = other.transform;
-            canSeePlayer = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            //player = other.transform;
-            canSeePlayer = false;
         }
     }
 
