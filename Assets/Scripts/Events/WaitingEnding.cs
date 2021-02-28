@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WaitingEnding : MonoBehaviour
 {
@@ -43,7 +44,7 @@ public class WaitingEnding : MonoBehaviour
             }
             else if (index == 5)
             {
-                playTime = 6f;
+                playTime = 30f;
             }
             else if (index == 6)
             {
@@ -55,11 +56,23 @@ public class WaitingEnding : MonoBehaviour
             }
             else if (index == 8)
             {
-                playTime = 30f;
+                playTime = 6f;
+            }
+            else if (index == 9)
+            {
+                SceneManager.LoadScene(3);
             }
 
             index++;
             audios[index].Play();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Destroy(this);
         }
     }
 }
