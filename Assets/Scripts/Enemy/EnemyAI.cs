@@ -16,22 +16,39 @@ public class EnemyAI : MonoBehaviour
     public NavMeshAgent agent;
     public AIType type;
     public Transform player;
-    public float delta = 0.1f;
-    public float speed = 1;
-    public bool canSeePlayer;
+    //public float delta = 0.1f;
+    //public float speed = 1;
+    public DamageState dmg;
+
+    private bool canSeePlayer;
+    private float damageTime;
+    private bool damageble;
 
     private void Start()
     {
+        damageTime = 0f;
         canSeePlayer = false;
     }
 
     private void Update()
     {
-        //this.transform.position = Vector3.MoveTowards(this.transform.position, player.position, this.delta) * this.speed;
-        if (canSeePlayer)
+        if (type == AIType.NORMAL)
         {
-            Debug.Log("CPLM?!");
-            agent.SetDestination(player.position);
+            if (canSeePlayer)
+            {
+                agent.SetDestination(player.position);
+            }
+
+            if (damageTime <= 0 && damageble)
+            {
+                player.gameObject.GetComponent<Health>().TakeDamage(dmg);
+                damageTime = 2f;
+
+            }
+
+            if (damageTime > 0)
+                damageTime -= Time.deltaTime;
+
         }
     }
 
@@ -44,11 +61,21 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            //player = other.transform;
+            canSeePlayer = false;
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             gameObject.GetComponent<NavMeshAgent>().isStopped = true;
+            damageble = true;
         }
     }
     private void OnCollisionExit(Collision collision)
@@ -56,6 +83,7 @@ public class EnemyAI : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             gameObject.GetComponent<NavMeshAgent>().isStopped = false;
+            damageble = false;
         }
     }
 }
