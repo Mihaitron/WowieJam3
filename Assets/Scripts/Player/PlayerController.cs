@@ -96,12 +96,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnPause()
-    {
-        PauseMenu pause = GameObject.Find("Canvas").GetComponent<PauseMenu>();
-        pause.Action();
-    }
-
     public void OnMove(InputValue input)
     {
         Vector2 input_vector = input.Get<Vector2>();
