@@ -32,6 +32,7 @@ public class EnemyAI : MonoBehaviour
     private Vector3 destinationPos;
     private bool bossSecondAttack;
     private bool summonOnlyOnce;
+    private AudioSource bossPunch;
 
     private void Start()
     {
@@ -39,6 +40,10 @@ public class EnemyAI : MonoBehaviour
         player = GameObject.Find("Player").transform;
         damageTime = 0f;
         canSeePlayer = false;
+        if (type == AIType.BOSS)
+        {
+            bossPunch = GameObject.Find("BossPunch").GetComponent<AudioSource>();
+        }
     }
 
     private void Update()
@@ -107,6 +112,8 @@ public class EnemyAI : MonoBehaviour
             {
                 if (!player.GetComponent<PlayerController>().IsBlocking())
                     player.gameObject.GetComponent<Health>().TakeDamage(dmg);
+
+                bossPunch.Play();
 
                 if (!bossSecondAttack)
                 {
