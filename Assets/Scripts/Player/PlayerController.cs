@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float attackTime = 1f;
     public AudioSource shieldSound;
     public AudioSource swordSound;
+    public GameObject deathMenu;
 
     private bool isMoving = false;
     private bool isLooking = false;
@@ -186,6 +187,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnDestroy()
     {
-        Debug.Log("Dead");
+        deathMenu.SetActive(true);
     }
 }
