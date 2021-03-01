@@ -165,7 +165,11 @@ public class EnemyAI : MonoBehaviour
     {
         if (type == AIType.BOSS)
         {
-
+            GameObject.Find("Ending").GetComponent<AfterBossEnding>().Ending(2);
+        }
+        else if (type == AIType.BOSS_SUMMONER)
+        {
+            GameObject.Find("Ending").GetComponent<AfterBossEnding>().Ending(1);
         }
     }
 }

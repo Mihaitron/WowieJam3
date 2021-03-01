@@ -11,6 +11,7 @@ public class AfterBossEnding : MonoBehaviour
     private bool bad;
     private bool end;
     private float endingTime;
+    private float waitBefore;
 
     private void Start()
     {
