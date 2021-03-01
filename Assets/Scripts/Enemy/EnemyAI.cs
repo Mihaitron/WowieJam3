@@ -63,6 +63,11 @@ public class EnemyAI : MonoBehaviour
                 damageTime -= Time.deltaTime;
 
         }
+
+        else if (type == AIType.SUMMONER)
+        {
+
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
