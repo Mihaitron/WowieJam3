@@ -36,7 +36,7 @@ public class EnemyAI : MonoBehaviour
     private void Start()
     {
         summonOnlyOnce = false;
-        player = GameObject.Find("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         damageTime = 0f;
         canSeePlayer = false;
     }
