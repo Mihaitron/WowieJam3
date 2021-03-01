@@ -15,36 +15,41 @@ public class EnemyAI : MonoBehaviour
 {
     public NavMeshAgent agent;
     public AIType type;
-    public Transform player;
+    
     //public float delta = 0.1f;
     //public float speed = 1;
     public DamageState dmg;
     public float distance;
     public float waitDamageTime;
+    public GameObject summon;
+    public Transform summonLocation;
 
     private bool canSeePlayer;
     private float damageTime;
     private bool damageble;
+    private Transform player;
+    private Vector3 destinationPos;
 
     private void Start()
     {
+        player = GameObject.Find("Player").transform;
         damageTime = 0f;
         canSeePlayer = false;
     }
 
     private void Update()
     {
+        if (Vector3.Distance(player.position, this.transform.position) <= distance)
+        {
+            canSeePlayer = true;
+        }
+        else
+        {
+            canSeePlayer = false;
+        }
+
         if (type == AIType.NORMAL)
         {
-            if (Vector3.Distance(player.position, this.transform.position) <= distance)
-            {
-                canSeePlayer = true;
-            }
-            else
-            {
-                canSeePlayer = false;
-            }
-
             if (canSeePlayer)
             {
                 agent.SetDestination(player.position);
@@ -58,16 +63,30 @@ public class EnemyAI : MonoBehaviour
                 damageTime = waitDamageTime;
 
             }
-
-            if (damageTime > 0)
-                damageTime -= Time.deltaTime;
-
         }
-
         else if (type == AIType.SUMMONER)
         {
-
+            if (canSeePlayer)
+            {
+                
+                agent.SetDestination(destinationPos);
+                if (damageTime <= 0)
+                {
+                    AISummon();
+                    damageTime = waitDamageTime;
+                }
+            }
+            else
+                destinationPos = new Vector3(this.transform.position.x + (player.position.x - this.transform.position.x) / 2, this.transform.position.y + (player.position.y - this.transform.position.y) / 2, this.transform.position.z + (player.position.z - this.transform.position.z) / 2);
         }
+
+        if (damageTime > 0)
+            damageTime -= Time.deltaTime;
+    }
+
+    private void AISummon()
+    {
+        Instantiate(summon, summonLocation.position, Quaternion.identity);
     }
 
     private void OnCollisionEnter(Collision collision)
