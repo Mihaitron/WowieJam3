@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public GameObject weapon;
     public GameObject shield;
     public float attackTime = 1f;
+    public AudioSource shieldSound;
+    public AudioSource swordSound;
 
     private bool isMoving = false;
     private bool isLooking = false;
@@ -49,6 +51,7 @@ public class PlayerController : MonoBehaviour
         if (this.isBlocking)
         {
             this.spawnedShield = Instantiate(this.shield, this.transform.GetChild(0), false);
+            shieldSound.Play();
         }
         else
         {
@@ -61,6 +64,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!this.isBlocking && this.currentAttackTime <= 0)
         {
+            swordSound.Play();
             this.currentAttackTime = this.attackTime;
             GameObject spawned_sword = Instantiate(this.weapon, this.transform.GetChild(0), false);
             List<GameObject> enemiesToRemove = new List<GameObject>();
