@@ -23,11 +23,11 @@ public class EnemyAI : MonoBehaviour
     public float waitDamageTime;
     public GameObject summon;
     public Transform summonLocation;
+    public Transform player;
 
     private bool canSeePlayer;
     private float damageTime;
     private bool damageble;
-    private Transform player;
     private Vector3 destinationPos;
 
     private void Start()
@@ -104,5 +104,10 @@ public class EnemyAI : MonoBehaviour
             gameObject.GetComponent<NavMeshAgent>().isStopped = false;
             damageble = false;
         }
+    }
+
+    public void SetDamageable(bool is_damageable)
+    {
+        this.damageble = is_damageable;
     }
 }
