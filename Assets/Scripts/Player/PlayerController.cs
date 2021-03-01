@@ -77,10 +77,10 @@ public class PlayerController : MonoBehaviour
 
 
                 Health enemyHealth = enemy.GetComponent<Health>();
-                float enemyHealthCurrent = enemyHealth.maxHealth;
+                float enemyHealthCurrent = enemyHealth.GetCurrentHealth();
                 enemyHealth.TakeDamage(DamageState.FULL);
 
-                if (enemyHealthCurrent == 1)
+                if (enemyHealthCurrent <= 1)
                 {
                     enemiesToRemove.Add(enemy);
                 }

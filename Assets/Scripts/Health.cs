@@ -23,6 +23,18 @@ public class Health : MonoBehaviour
         {
             deathSound = GameObject.Find("HumanDeath").GetComponent<AudioSource>();
         }
+        else if (soundIndex == 2)
+        {
+            deathSound = GameObject.Find("ZombieDeath").GetComponent<AudioSource>();
+        }
+        else if (soundIndex == 3)
+        {
+            deathSound = GameObject.Find("SkeletDeath").GetComponent<AudioSource>();
+        }
+        else if (soundIndex == 4)
+        {
+            deathSound = GameObject.Find("BossDeath").GetComponent<AudioSource>();
+        }
     }
 
     public float GetCurrentHealth()
