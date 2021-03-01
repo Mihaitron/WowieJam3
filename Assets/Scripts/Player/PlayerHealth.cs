@@ -22,14 +22,6 @@ public class PlayerHealth : MonoBehaviour
     {
         this.ModifyHearts();
         this.ModifyHealthUI();
-        /*if (!(dmgTime > 0))
-        {
-            //Debug.Log("In if!");
-            health.TakeDamage(DamageState.HALF);
-            dmgTime = 5f;
-        }
-        dmgTime -= Time.deltaTime;*/
-        //Debug.Log(dmgTime);
     }
 
     public void Heal()
@@ -41,7 +33,6 @@ public class PlayerHealth : MonoBehaviour
     {
         float dmg = health.damageTaken();
         int current_index = this.healthBar.childCount - 1;
-        //Debug.Log(dmg);
 
         while (current_index > 0)
         {
@@ -73,6 +64,21 @@ public class PlayerHealth : MonoBehaviour
             }
         }
 
+    }
+
+    public void ResetUI()
+    {
+        int current_index = this.healthBar.childCount - 1;
+        Transform current = this.healthBar.GetChild(current_index);
+        current.GetComponent<Image>().sprite = this.heartStates[0];
+
+        while (current_index > 0)
+        {
+            current_index--;
+            current = this.healthBar.GetChild(current_index);
+
+            current.GetComponent<Image>().sprite = this.heartStates[2];
+        }
     }
 
     private void ModifyHealthUI()
