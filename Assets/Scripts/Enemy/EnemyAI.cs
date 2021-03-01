@@ -7,7 +7,8 @@ public enum AIType
 {
     NORMAL,
     SUMMONER,
-    BOSS
+    BOSS,
+    BOSS_SUMMONER
 }
 
 
@@ -29,9 +30,12 @@ public class EnemyAI : MonoBehaviour
     private float damageTime;
     private bool damageble;
     private Vector3 destinationPos;
+    private bool bossSecondAttack;
+    private bool summonOnlyOnce;
 
     private void Start()
     {
+        summonOnlyOnce = false;
         player = GameObject.Find("Player").transform;
         damageTime = 0f;
         canSeePlayer = false;
@@ -78,6 +82,44 @@ public class EnemyAI : MonoBehaviour
             }
             else
                 destinationPos = new Vector3(this.transform.position.x + (player.position.x - this.transform.position.x) / 2, this.transform.position.y + (player.position.y - this.transform.position.y) / 2, this.transform.position.z + (player.position.z - this.transform.position.z) / 2);
+        }
+        else if (type == AIType.BOSS_SUMMONER)
+        {
+            if (canSeePlayer)
+            {
+                agent.SetDestination(player.position);
+                if (!summonOnlyOnce)
+                { 
+                    AISummon();
+                    summonOnlyOnce = true;
+                }
+            }
+            agent.speed = 0;
+        }
+        else if (type == AIType.BOSS)
+        {
+            if (canSeePlayer)
+            {
+                agent.SetDestination(player.position);
+            }
+
+            if (damageTime <= 0 && damageble)
+            {
+                if (!player.GetComponent<PlayerController>().IsBlocking())
+                    player.gameObject.GetComponent<Health>().TakeDamage(dmg);
+
+                if (!bossSecondAttack)
+                {
+                    bossSecondAttack = true;
+                    damageTime = 0.5f;
+                }
+                else
+                {
+                    bossSecondAttack = false;
+                    damageTime = waitDamageTime;
+                }
+
+            }
         }
 
         if (damageTime > 0)
