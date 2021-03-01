@@ -63,6 +63,7 @@ public class Health : MonoBehaviour
     {
         currentHealth -= TranslateDamageToValue(damage);
         this.gameObject.GetComponent<GetHurt>().Hurt();
+        Debug.Log(currentHealth);
         if (currentHealth <= 0)
         {
             Die();
