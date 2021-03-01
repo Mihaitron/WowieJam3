@@ -3308,6 +3308,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92678c3f30ddd4e4fac55ab3fa21473b, type: 3}
+--- !u!1 &330102902 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2232381512134090239, guid: bbd10fd6a03907345ae5e2140d1a22e9,
+    type: 3}
+  m_PrefabInstance: {fileID: 510049577698238563}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &330102903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330102902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca9b4d85e03a364eabc708513bcad50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hurtTimeVariable: 0.3
+  hurtMaterial: {fileID: 2100000, guid: 48b31daa83ddb854fadd9402702394e4, type: 2}
 --- !u!4 &332874911 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2217158269431540477, guid: 92678c3f30ddd4e4fac55ab3fa21473b,
@@ -17767,6 +17787,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0005579, y: 1.8270875, z: 0.9474182}
   m_Center: {x: -0.0041356087, y: 0.90817755, z: 0.78933907}
+--- !u!114 &1576962604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576962595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca9b4d85e03a364eabc708513bcad50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hurtTimeVariable: 0.2
+  hurtMaterial: {fileID: 2100000, guid: 48b31daa83ddb854fadd9402702394e4, type: 2}
 --- !u!1001 &1581358450
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24730,6 +24764,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 510049576026542882, guid: bbd10fd6a03907345ae5e2140d1a22e9,
+        type: 3}
+      propertyPath: maxHealth
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 510049576026542887, guid: bbd10fd6a03907345ae5e2140d1a22e9,
         type: 3}
       propertyPath: player
