@@ -179,4 +179,9 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
+
+    private void OnDestroy()
+    {
+        Debug.Log("Dead");
+    }
 }
