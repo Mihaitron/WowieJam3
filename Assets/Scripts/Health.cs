@@ -47,6 +47,11 @@ public class Health : MonoBehaviour
         return maxHealth - currentHealth;
     }
 
+    public void ResetMaxHealth()
+    {
+        this.currentHealth = this.maxHealth;
+    }
+
     public void AddHealth()
     {
         currentHealth += 1;
