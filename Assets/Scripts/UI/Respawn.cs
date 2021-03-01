@@ -7,12 +7,7 @@ public class Respawn : MonoBehaviour
     public List<Transform> respawnPoints;
     public GameObject player;
 
-    private static int spawnIndex;
-
-    private void Start()
-    {
-        spawnIndex = 0;
-    }
+    private static int spawnIndex = 0;
 
     public void RespawnAtLastSpawnpoint()
     {
