@@ -43,6 +43,7 @@ public class EnemyAI : MonoBehaviour
         if (type == AIType.BOSS)
         {
             bossPunch = GameObject.Find("BossPunch").GetComponent<AudioSource>();
+            GameObject.Find("BeforeBoss").GetComponent<AudioSource>().Play();
         }
     }
 
@@ -158,5 +159,17 @@ public class EnemyAI : MonoBehaviour
     public void SetDamageable(bool is_damageable)
     {
         this.damageble = is_damageable;
+    }
+
+    private void OnDestroy()
+    {
+        if (type == AIType.BOSS)
+        {
+            GameObject.Find("Ending").GetComponent<AfterBossEnding>().Ending(2);
+        }
+        else if (type == AIType.BOSS_SUMMONER)
+        {
+            GameObject.Find("Ending").GetComponent<AfterBossEnding>().Ending(1);
+        }
     }
 }
