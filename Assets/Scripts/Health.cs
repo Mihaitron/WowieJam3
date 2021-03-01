@@ -5,6 +5,8 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public int maxHealth;
+    public int soundIndex;
+    public AudioSource deathSound;
 
     private float currentHealth;
     private bool canGetDamage;
@@ -13,6 +15,14 @@ public class Health : MonoBehaviour
     {
         canGetDamage = true;
         currentHealth = maxHealth;
+        if (soundIndex == 0)
+        {
+            deathSound = GameObject.Find("RatDeath").GetComponent<AudioSource>();
+        }
+        else if (soundIndex == 1)
+        {
+            deathSound = GameObject.Find("HumanDeath").GetComponent<AudioSource>();
+        }
     }
 
     public float GetCurrentHealth()
@@ -44,6 +54,7 @@ public class Health : MonoBehaviour
 
     public void Die()
     {
+        deathSound.Play();
         //dead = true;
         Destroy(this.gameObject);
     }
