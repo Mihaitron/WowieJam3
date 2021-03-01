@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WaitingEnding.unity
     guid: 89f433eb360276348a6c06fdbe78a140
+  - enabled: 1
+    path: Assets/Scenes/GoodEnding.unity
+    guid: c21115dccde124c47905810c251bc744
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 880194d41e8d4ba40830dbc2d045e8ac,
       type: 2}
